@@ -1,0 +1,36 @@
+{% extends 'videos/base.html' %}
+{% block content %}
+
+<div class="container">
+	<h2>Add Youtube Video</h2>
+	<form method="post">
+		{% csrf_token %}
+		{% load widget_tweaks %}
+
+		{%for field in form %}
+		<div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
+			{{ field.errors }}
+			{{ field.label_tag }}
+			{% render_field field class="form-control" %}
+		</div>
+		{% endfor %}
+
+		<button type="submit" class="btn btn-primary">Add</button>
+	</form>
+
+	<h3>Search</h3>
+	<form>
+		{{ search_form }}
+	</form>
+	<br>
+	{% if messages %}
+	<ul class="messages">
+    	{% for message in messages %}
+    	<li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    	{% endfor %}
+	</ul>
+	{% endif %}
+
+</div>
+
+{% endblock %}

@@ -18,11 +18,13 @@ urlpatterns = [
     
     #list
     path('videolist/create', views.CreateList.as_view(), name='create_list'),
-    path('videolist/<int:pk>', views.DetailVideo.as_view(), name='detail_list'),
-    path('videolist/<int:pk>/update', views.UpdateVideo.as_view(), name='update_list'),
-    path('videolist/<int:pk>/delete', views.DeleteVideo.as_view(), name='delete_list'),
+    path('videolist/<int:pk>', views.DetailList.as_view(), name='detail_list'),
+    path('videolist/<int:pk>/update', views.UpdateList.as_view(), name='update_list'),
+    path('videolist/<int:pk>/delete', views.DeleteList.as_view(), name='delete_list'),
     #YT Video
     path('videolist/<int:pk>/addYTvideo', views.add_YT_video, name='add_YT_video'),
+    path('video/search', views.video_search, name='video_search'),
+    path('videolist/<int:pk>/deleteYTvideo', views.DeleteVideo.as_view(), name='delete_yt_video'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

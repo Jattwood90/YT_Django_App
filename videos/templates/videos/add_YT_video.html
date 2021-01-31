@@ -1,13 +1,14 @@
 {% extends 'videos/base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="container">
 	<h2>Add Youtube Video</h2>
-	<form method="post">
+	<form method="post" id="submit_video">
 		{% csrf_token %}
 		{% load widget_tweaks %}
 
-		{%for field in form %}
+		{% for field in form %}
 		<div class="form-group {% if field.errors %}alert alert-danger{% endif %}">
 			{{ field.errors }}
 			{{ field.label_tag }}
@@ -17,20 +18,32 @@
 
 		<button type="submit" class="btn btn-primary">Add</button>
 	</form>
-
-	<h3>Search</h3>
-	<form>
-		{{ search_form }}
-	</form>
 	<br>
-	{% if messages %}
-	<ul class="messages">
-    	{% for message in messages %}
-    	<li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-    	{% endfor %}
-	</ul>
-	{% endif %}
+	<!-- Search form -->
+	<h3>Search</h3>
+	{% for field in search_form %}
+		<div class="form-group">
+			{{ field.errors }}
+			{{ field.label_tag }}
+			{% render_field field class="form-control" %}
+		</div>
+	{% endfor %}
+	<br>
+	
+	<!-- Success messages -->
+	<div>
+		{% if messages %}
+		<ol class="messages">
+	    	{% for message in messages %}
+	    	<li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+	    	{% endfor %}
+		</ol>
+		{% endif %}
+	</div>
 
+	<!-- Search results -->
+	<div id="search_results"></div>
+	<script src="{% static 'app.js' %}"></script>  
 </div>
 
 {% endblock %}

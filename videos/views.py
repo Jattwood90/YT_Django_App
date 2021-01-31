@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from .models import Video, YT
 from django.forms import formset_factory
 from .forms import YTForm, SearchForm
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.forms.utils import ErrorList
 import urllib
 import requests
@@ -66,8 +66,22 @@ def add_YT_video(request, pk):
 	return render(request, 'videos/add_YT_video.html', {'form': form, 
 														'search_form':search_form,
 														'videos':videos
-														})
 
+
+														})
+def video_search(request):
+	search_form = SearchForm(request.GET)
+	if search_form.is_valid():
+		
+		encoded_search_term = urllib.parse.quote(search_form.cleaned_data['search_term'])
+		response = requests.get(f'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=6&q={encoded_search_term}&key={YOUTUBE_API_KEY}')
+		return JsonResponse(response.json())
+	return JsonResponse({'Error':'Not able to validate form'})
+
+class DeleteVideo(generic.DeleteView):
+	model = YT
+	template_name = 'videos/delete_YT_video.html'
+	success_url = reverse_lazy('dashboard')
 
 class SignUp(generic.CreateView):
 	form_class = UserCreationForm
@@ -94,18 +108,18 @@ class CreateList(generic.CreateView):
 		return redirect('home')
 
 
-class DetailVideo(generic.DetailView):
+class DetailList(generic.DetailView):
 	model = Video
 	template_name = 'videos/detail_list.html'
 
 
-class UpdateVideo(generic.UpdateView):
+class UpdateList(generic.UpdateView):
 	model = Video
 	template_name = 'videos/update_list.html'
 	fields = ['title']
 	success_url = reverse_lazy('dashboard')
 
-class DeleteVideo(generic.DeleteView):
+class DeleteList(generic.DeleteView):
 	model = Video
 	template_name = 'videos/delete_list.html'
 	fields = ['title']

@@ -20,10 +20,16 @@ load_dotenv()
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
 
 def home(request):
-	return render(request, 'videos/home.html')
+	channels = Video.objects.all()
+	print(channels)
+	return render(request, 'videos/home.html', {'channels':channels})
+
 
 def dashboard(request):
-	return render(request, 'videos/dashboard.html')
+	videos = YT.objects.all().order_by('-video')
+	print(videos)
+	return render(request, 'videos/dashboard.html', {'videos':videos})
+
 
 def add_YT_video(request, pk):
 	

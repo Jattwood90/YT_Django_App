@@ -12,7 +12,7 @@ class YT(models.Model):
     title = models.CharField(max_length=255)
     url = models.URLField()
     youtube_id = models.CharField(max_length=255)
-    video = models.ForeignKey(Video, on_delete=models.CASCADE, blank=True, null=True)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, blank=True, null=False)
 
     def __str__(self):
         return self.title + ', Youtube ID: ' + self.youtube_id

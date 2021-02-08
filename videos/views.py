@@ -27,8 +27,9 @@ def home(request):
 
 def dashboard(request):
 	videos = YT.objects.all().order_by('-video')
+	lists = Video.objects.all()
 	print(videos)
-	return render(request, 'videos/dashboard.html', {'videos':videos})
+	return render(request, 'videos/dashboard.html', {'videos':videos, 'lists':lists})
 
 
 def add_YT_video(request, pk):
@@ -111,7 +112,7 @@ class CreateList(generic.CreateView):
 	def form_valid(self, form):
 		form.instance.user = self.request.user
 		super(CreateList, self).form_valid(form)
-		return redirect('home')
+		return redirect('dashboard')
 
 
 class DetailList(generic.DetailView):

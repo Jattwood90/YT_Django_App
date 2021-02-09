@@ -4,6 +4,8 @@ from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Video, YT
 from django.forms import formset_factory
 from .forms import YTForm, SearchForm
@@ -12,6 +14,7 @@ from django.forms.utils import ErrorList
 import urllib
 import requests
 
+
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -19,19 +22,19 @@ load_dotenv()
 
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
 
+@login_required
 def home(request):
 	channels = Video.objects.all()
-	print(channels)
-	return render(request, 'videos/home.html', {'channels':channels})
+	recents = Video.objects.all().order_by('-id')[:3]
+	return render(request, 'videos/home.html', {'channels':channels, 'recents':recents})
 
-
+@login_required
 def dashboard(request):
-	videos = YT.objects.all().order_by('-video')
-	lists = Video.objects.all()
+	videos = Video.objects.filter(user=request.user)
 	print(videos)
-	return render(request, 'videos/dashboard.html', {'videos':videos, 'lists':lists})
+	return render(request, 'videos/dashboard.html', {'videos':videos})
 
-
+@login_required
 def add_YT_video(request, pk):
 	
 	form = YTForm()
@@ -72,10 +75,10 @@ def add_YT_video(request, pk):
 
 	return render(request, 'videos/add_YT_video.html', {'form': form, 
 														'search_form':search_form,
-														'videos':videos
+														'videos':videos})
 
 
-														})
+@login_required														
 def video_search(request):
 	search_form = SearchForm(request.GET)
 	if search_form.is_valid():
@@ -85,14 +88,20 @@ def video_search(request):
 		return JsonResponse(response.json())
 	return JsonResponse({'Error':'Not able to validate form'})
 
-class DeleteVideo(generic.DeleteView):
+class DeleteVideo(LoginRequiredMixin, generic.DeleteView):
 	model = YT
 	template_name = 'videos/delete_YT_video.html'
 	success_url = reverse_lazy('dashboard')
+	# might need cleaning here
+	def get_object(self):
+		video = super(DeleteVideo, self).get_object()
+		if not video.user == self.request.user:
+			raise Http404
+		return video
 
-class SignUp(generic.CreateView):
+class SignUp(LoginRequiredMixin, generic.CreateView):
 	form_class = UserCreationForm
-	success_url = reverse_lazy('home')
+	success_url = reverse_lazy('dashboard')
 	template_name = 'registration/signup.html'
 
 	def form_valid(self, form):
@@ -103,7 +112,7 @@ class SignUp(generic.CreateView):
 		return view
 
 
-class CreateList(generic.CreateView):
+class CreateList(LoginRequiredMixin, generic.CreateView):
 	model = Video
 	fields = ['title']
 	template_name = 'videos/create_list.html'
@@ -115,12 +124,12 @@ class CreateList(generic.CreateView):
 		return redirect('dashboard')
 
 
-class DetailList(generic.DetailView):
+class DetailList(LoginRequiredMixin, generic.DetailView):
 	model = Video
 	template_name = 'videos/detail_list.html'
 
 
-class UpdateList(generic.UpdateView):
+class UpdateList(LoginRequiredMixin, generic.UpdateView):
 	model = Video
 	template_name = 'videos/update_list.html'
 	fields = ['title']

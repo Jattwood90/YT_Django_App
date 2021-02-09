@@ -31,4 +31,10 @@ var delayTimer;
 		function addVideo(video_id) {
 			$('#id_url').val('https://www.youtube.com/watch?v=' + video_id);
 			$('#submit_video').submit();
+		};
+
+
+		function goBack() {
+		    window.history.back();
 		}
+

@@ -7,21 +7,30 @@
     </div>
 </div>
 <br>
+{% if channels %}
 <div class="text-center">
-    {% for channel in channels %}
     <table style="width:100%">
         <tr>
             <th>Channel ID</th>
-            <th>Added Date</th>
             <th>Video Count</th>
         </tr>
+        {% for channel in channels %}
         <tr>
             <td>{{ channel.title }}</td>
-            <td>Date</td>
-            <td>9</td>
+            <td>{{ channel.yt_set.count }}</td>
         </tr>
+        {% endfor %}
     </table>
-    {% endfor %}
 </div>
 </div>
+{% else %}
+    <br>
+    <br>
+    <div class="row text-center">
+        <div class="container">
+        <h2>Nothing to see here!</h2>
+        <h3>Click above to create a new list</h3>
+    </div>
+</div>
+{% endif %}
 {% endblock %}

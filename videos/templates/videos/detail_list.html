@@ -6,17 +6,17 @@
 </div>
 {% if user.id == video.user.id %}
 <div class="row">
-    {% for video in videos %}
-    
+    {% for yt in video.yt_set.all %}
     <div class="col-md-4 mt-3">
         <div class="card mb-4 shadow-sm">
-            <iframe width="100%" height="225" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="225" src="https://www.youtube.com/embed/{{ yt.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="card-body">
-                <p class="card-text"><a href="{{ video.url }}">{{ video.title }}</a></p>
-                <p class="card-text">Channel ID: <a href="{% url 'detail_list' video.id %}">{{ video.video }}</a></p>
+                <p class="card-text"><a href="{{ yt.url }}">{{ yt.url }}</a></p>
+                <a href="{% url 'delete_yt_video' yt.id %}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
+    <br>
     {% endfor %}
     {% endif %}
     {% endblock %}

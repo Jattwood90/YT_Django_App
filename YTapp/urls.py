@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('dashboard', views.dashboard, name='dashboard'),
+    path('csv_upload', views.csv_upload, name='csv_upload'),
     
     #Auth
     path('signup', views.SignUp.as_view(), name='signup'),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('videolist/<int:pk>/addYTvideo', views.add_YT_video, name='add_YT_video'),
     path('video/search', views.video_search, name='video_search'),
     path('videolist/<int:pk>/deleteYTvideo', views.DeleteVideo.as_view(), name='delete_yt_video'),
+    
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -5,6 +5,9 @@
     <h4 class="text-muted">{{ video.user.username }}</h4>
 </div>
 {% if user.id == video.user.id %}
+<a href="{% url 'delete_list' video.id %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'update_list' video.id %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'add_YT_video' video.id %}" class="btn btn-primary">Add Video</a>
 <div class="row">
     {% for yt in video.yt_set.all %}
     <div class="col-md-4 mt-3">

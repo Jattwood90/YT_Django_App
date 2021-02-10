@@ -9,3 +9,24 @@
 .jumbotron .container {
   max-width: 51rem;
 }
+
+.srButton {
+
+    border: none;
+    color: #fff;
+    background-color: red;
+    text-transform: uppercase;
+    padding: .45em;
+    font-weight: 500;
+    line-height: 1;
+    -webkit-transition: all .25s;
+    -o-transition: all .25s;
+    font-size: 25px; */
+    width: 225px;
+    text-align: center;
+    transition: all .25s;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+
+}

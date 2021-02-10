@@ -13,6 +13,7 @@ from django.http import Http404, JsonResponse
 from django.forms.utils import ErrorList
 import urllib
 import requests
+import csv, io
 
 
 import os
@@ -31,7 +32,6 @@ def home(request):
 @login_required
 def dashboard(request):
 	videos = Video.objects.filter(user=request.user)
-	print(videos)
 	return render(request, 'videos/dashboard.html', {'videos':videos})
 
 @login_required
@@ -49,6 +49,11 @@ def add_YT_video(request, pk):
 		if filled_form.is_valid():
 			YTvideo = YT()
 			YTvideo.url = filled_form.cleaned_data['url']
+			YTvideo.video = filled_form.cleaned_data['video']
+			if YTvideo.video == None:
+				errors = form.errors.setdefault('video', ErrorList())
+				errors.append(f'Please select a channel.')
+
 			parsed_url = urllib.parse.urlparse(YTvideo.url)
 			video_id = urllib.parse.parse_qs(parsed_url.query).get('v')
 			#This gets what ever V is equal to in the YT URL i.e. the YT ID
@@ -87,6 +92,37 @@ def video_search(request):
 		response = requests.get(f'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=6&q={encoded_search_term}&key={YOUTUBE_API_KEY}')
 		return JsonResponse(response.json())
 	return JsonResponse({'Error':'Not able to validate form'})
+
+@login_required
+def csv_upload(request):
+	template = 'csv_upload.html'
+
+	prompt = {
+		'order': 'Order of the CSV should be title, url, youtube_id, video'
+	}
+
+	if request.method == 'GET':
+		return render(request, template, prompt)
+
+	csv_file = request.FILES['file']
+
+	if not csv_file.name.endswith('.csv'):
+		messages.error(request, 'This is not a csv file.')
+
+	data_set = csv_file.read().decode('UTF-8')
+	io_string = io.StringIO(data_set)
+	next(io_string)
+
+	for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+		_, created = YT.objects.update_or_create(
+			title=column[0],
+			url=column[1],
+			youtube_id=column[2],
+			video=column[3]
+			)
+	context = {}
+	return render(request, template, context)
+
 
 class DeleteVideo(LoginRequiredMixin, generic.DeleteView):
 	model = YT
@@ -140,3 +176,5 @@ class DeleteList(generic.DeleteView):
 	template_name = 'videos/delete_list.html'
 	fields = ['title']
 	success_url = reverse_lazy('dashboard')
+
+

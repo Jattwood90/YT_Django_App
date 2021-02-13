@@ -1,13 +1,61 @@
+html, body {
+  min-height: 100vh;
+  height: 100%;
+  margin:0px;
+  padding: 0px;
+}
+
 .jumbotron {
-  background-color: #EBF4FA;
+  background: url("/static/footer.png") 20%;
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .jumbotron-heading {
   font-weight: 300;
+  color: white;
 }
 
 .jumbotron .container {
   max-width: 51rem;
+  color: white;
 }
 
-/*Search result boxes*/
+
+.base-nav-bar {
+    font-style: bold;
+}
+
+.content {
+  padding-bottom: : 50px;
+  min-height: 100%;
+  margin: 0 auto -50px;
+}
+
+.video_container {
+	text-align: center;
+	display: flex;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.empty_rows {
+	text-align: center;
+}
+
+.main-footer {
+    background-color: red;
+    text-align: left;
+    color: white;
+    position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	min-height: 75px;
+	max-height: 100px;
+	color: white;
+	margin-top: 20px;
+	text-align: left;
+}

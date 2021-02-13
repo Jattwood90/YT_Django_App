@@ -26,7 +26,7 @@ YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
 @login_required
 def home(request):
 	channels = Video.objects.all()
-	recents = Video.objects.all().order_by('-id')[:3]
+	recents = Video.objects.all().reverse().order_by('id')[:1]
 	return render(request, 'videos/home.html', {'channels':channels, 'recents':recents})
 
 @login_required
@@ -50,9 +50,6 @@ def add_YT_video(request, pk):
 			YTvideo = YT()
 			YTvideo.url = filled_form.cleaned_data['url']
 			YTvideo.video = filled_form.cleaned_data['video']
-			if YTvideo.video == None:
-				errors = form.errors.setdefault('video', ErrorList())
-				errors.append(f'Please select a channel.')
 
 			parsed_url = urllib.parse.urlparse(YTvideo.url)
 			video_id = urllib.parse.parse_qs(parsed_url.query).get('v')
@@ -98,7 +95,7 @@ def csv_upload(request):
 	template = 'csv_upload.html'
 
 	prompt = {
-		'order': 'Order of the CSV should be title, url, youtube_id, video'
+		'order': 'Order of the CSV should be title, url, youtube_id'
 	}
 
 	if request.method == 'GET':
@@ -118,7 +115,6 @@ def csv_upload(request):
 			title=column[0],
 			url=column[1],
 			youtube_id=column[2],
-			video=column[3]
 			)
 	context = {}
 	return render(request, template, context)
@@ -170,6 +166,8 @@ class UpdateList(LoginRequiredMixin, generic.UpdateView):
 	template_name = 'videos/update_list.html'
 	fields = ['title']
 	success_url = reverse_lazy('dashboard')
+
+
 
 class DeleteList(generic.DeleteView):
 	model = Video

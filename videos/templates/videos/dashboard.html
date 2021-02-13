@@ -8,7 +8,7 @@
     </div>
 </div>
 <!-- Videos Display -->
-<div class="container">
+<div class="video_container">
     <div class="text-center">
         {% if videos %}
         {% for video in videos %}
@@ -16,7 +16,7 @@
         <a href="{% url 'delete_list' video.id %}" class="btn btn-danger">Delete</a>
         <a href="{% url 'update_list' video.id %}" class="btn btn-primary">Edit</a>
         <a href="{% url 'add_YT_video' video.id %}" class="btn btn-primary">Add Video</a>
-        <div class="row">
+        <div class="empty_rows row">
             {% if video.yt_set.all %}
             {% for yt in video.yt_set.all %}
             <div class="col-md-4 mt-3">
@@ -48,11 +48,15 @@
 {% else %}
 <br>
 <br>
-<div class="row text-center">
-    <div class="container">
+<div class="empty_rows">
+<div class="row">
+    <div class="container text-center">
+        <br>
         <h2>Nothing to see here!</h2>
         <h3>Try adding some videos</h3>
+        <br>
     </div>
+</div>
 </div>
 {% endif %}
 {% endblock %}

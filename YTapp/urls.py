@@ -1,4 +1,3 @@
-
 from django.contrib import admin, auth
 from django.contrib.auth import views as auth_views
 from django.urls import path
@@ -27,6 +26,4 @@ urlpatterns = [
     path('video/search', views.video_search, name='video_search'),
     path('videolist/<int:pk>/deleteYTvideo', views.DeleteVideo.as_view(), name='delete_yt_video'),
     
-]
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

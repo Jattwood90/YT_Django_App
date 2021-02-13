@@ -14,7 +14,7 @@ class YT(models.Model):
     title = models.CharField(max_length=255)
     url = models.URLField()
     youtube_id = models.CharField(max_length=255)
-    video = models.ForeignKey(Video, on_delete=models.CASCADE, blank=True, null=True)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True, default=Video)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
 

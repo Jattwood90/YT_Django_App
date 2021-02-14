@@ -5,3 +5,5 @@ The Django app makes use of Class based forms, and CRUD actions for the videos.
 Environment variables are hidden using dotenv, and the whole project in production mode is management from a virtual environment.
 
 [Ongoing project!]
+
+![ytpage](https://user-images.githubusercontent.com/56833060/107884058-9835d700-6eea-11eb-912a-c7f51b656f23.gif)

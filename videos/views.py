@@ -94,12 +94,10 @@ def video_search(request):
 def csv_upload(request):
 	template = 'csv_upload.html'
 
-	prompt = {
-		'order': 'Order of the CSV should be title, url, youtube_id'
-	}
+
 
 	if request.method == 'GET':
-		return render(request, template, prompt)
+		return render(request, template)
 
 	csv_file = request.FILES['file']
 

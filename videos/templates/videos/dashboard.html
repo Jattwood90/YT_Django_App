@@ -13,9 +13,9 @@
         {% if videos %}
         {% for video in videos %}
         <h2><a href="{% url 'detail_list' video.id %}">{{ video.title }}</a></h2>
-        <a href="{% url 'delete_list' video.id %}" class="btn btn-danger">Delete</a>
-        <a href="{% url 'update_list' video.id %}" class="btn btn-primary">Edit</a>
-        <a href="{% url 'add_YT_video' video.id %}" class="btn btn-primary">Add Video</a>
+        <a href="{% url 'delete_list' video.id %}" class="srButton">Delete</a>
+        <a href="{% url 'update_list' video.id %}" class="srButton">Edit</a>
+        <a href="{% url 'add_YT_video' video.id %}" class="srButton">Add Video</a>
         <div class="empty_rows row">
             {% if video.yt_set.all %}
             {% for yt in video.yt_set.all %}

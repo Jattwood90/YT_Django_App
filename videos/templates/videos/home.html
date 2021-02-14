@@ -5,14 +5,19 @@
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">Welcome {{ user.username }}</h1>
+        <br>
         <p class="jumbotron-heading">This is an app that allows you to record YouTube videos where copyright claims have been
             made. Add a channel name below, and look at your dashboard to add videos to the channel.</p>
+        <br>
+        <br>
         <p>
-            <a href="{% url 'create_list' %}" class="btn btn-primary">Create New YouTube Channel</a>
+            <a href="{% url 'create_list' %}" class="srButton">Create New YouTube Channel</a>
         </p>
     </div>
 </section>
 <br>
+<div class=table-container>
+<div class="home-table">
 <div class="text-center">
     <table style="width:100%">
         <tr>
@@ -21,11 +26,12 @@
         </tr>
         {% for channel in channels %}
         <tr>
-            <td>{{ channel.title }}</td>
+            <td><a href="{% url 'detail_list' channel.id %}">{{ channel.title }}</a></td>
             <td>{{ channel.yt_set.count }}</td>
         </tr>
         {% endfor %}
     </table>
+</div>
 </div>
 </div>
 

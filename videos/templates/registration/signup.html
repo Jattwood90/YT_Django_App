@@ -2,12 +2,14 @@
 {% block content %}
 
 <div class="container">
+<div class="innercontainer" style="padding: 100px">
 	<h2>Sign Up</h2>
 	<form method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button type="submit" class="btn btn-primary">Sign Up</button>
+		<button type="submit" class="srButton">Sign Up</button>
 	</form>
+</div>
 </div>
 
 {% endblock %}

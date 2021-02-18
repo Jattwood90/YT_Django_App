@@ -2,13 +2,12 @@
 {% block content %}
 <div class="container text-center">
     <h1>{{ video.title }}</h1>
-    <h4 class="text-muted">{{ video.user.username }}</h4>
 </div>
 <div class="text-center">
 {% if user.id == video.user.id %}
-<a href="{% url 'delete_list' video.id %}" class="btn btn-danger">Delete</a>
-<a href="{% url 'update_list' video.id %}" class="btn btn-primary">Edit</a>
-<a href="{% url 'add_YT_video' video.id %}" class="btn btn-primary">Add Video</a>
+<a href="{% url 'delete_list' video.id %}" class="srButton">Delete</a>
+<a href="{% url 'update_list' video.id %}" class="srButton">Edit</a>
+<a href="{% url 'add_YT_video' video.id %}" class="srButton">Add Video</a>
 
 <div class="row" style="padding-bottom: 20px">
     {% for yt in video.yt_set.all %}
@@ -18,7 +17,7 @@
             <div class="card-body">
                 <p class="card-text"><a href="{{ yt.url }}">{{ yt.url }}</a></p>
                 {% if user.id == video.user.id %}
-                <a href="{% url 'delete_yt_video' yt.id %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'delete_yt_video' yt.id %}" class="srButton">Delete</a>
                 {% endif %}
             </div>
         </div>

@@ -1,16 +1,18 @@
 {% extends 'videos/base.html' %}
 {% block content %}
 
+<div class="upload-container">
 <div class="container">
 	<h2>Edit List</h2>
 	<form method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button type="submit" class="btn btn-primary">Save</button>
+		<button type="submit" class="srButton">Save</button>
 	</form>
 
-<a href="{% url 'delete_list' video.id %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'delete_list' video.id %}" class="srButton">Delete</a>
 
+</div>
 </div>
 
 

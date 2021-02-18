@@ -1,27 +1,171 @@
-html, body {
-  min-height: 100vh;
-  height: 100%;
+html,
+body {
+    min-height: 100vh;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
+.logincontainer {
+    background: url("/static/background.png") 10%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 100px;
+
+}
+
+.innerlogin {
+    box-shadow: 2px black;
+    background-color: white;
+    padding: 15px;
+    align-self: center;
+    text-align: center;
+    border-radius: 1%;
+    border-color: black;
+    animation: ease-in;
+    animation-duration: 4s;
+    animation-delay: 2s;
+
+}
+
+
 .jumbotron {
-  background-color: #EBF4FA;
+    background: url("/static/footer.png") 20%;
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .jumbotron-heading {
-  font-weight: 300;
+    font-weight: 300;
+    color: white;
+    text-shadow: 2px 3px black;
+
 }
 
 .jumbotron .container {
-  max-width: 51rem;
+    max-width: 51rem;
+    color: white;
 }
-
 
 .base-nav-bar {
-    font-family: cursive;
+    font-style: bold;
 }
 
 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 150px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+.content {
+    padding-bottom: : 50px;
+    min-height: 100%;
+    margin: 0 auto -50px;
+}
+
+.video_container {
+    text-align: center;
+    padding-left: 30px;
+    padding-bottom: 100px;
+    padding-right: 30px;
+}
+
+.empty_rows {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    padding-top: 25px;
+}
+
+.table-container {
+    padding-bottom: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-table {
+    padding-bottom: 50px;
+    margin-bottom: 20px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+
+    width: 50%;
+    padding-left: 150px;
+    padding-right: 150px;
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+
+}
+
+
+.srButton {
+    border: none;
+    color: #fff;
+    background-color: red;
+    text-transform: uppercase;
+    padding: .20em;
+    font-weight: 500;
+    line-height: 1;
+    -webkit-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+}
+
+
+/*csv view*/
+
+.upload-container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 70px;
+
+}
+
+.upload-container-title {
+    display: grid;
+    text-align:center;
+    justify-items: center;
+    padding: 20px;
+}
+
+.file-upload-button {
+    display: flex;
+    flex-direction: column;
+}
+
 .main-footer {
-    background-image: url("/static/footer.png") 50% 0 no-repeat fixed;
-    color: #ffffff;
+    background-color: red;
+    text-align: center;
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: 100px;
+    color: white;
+    margin-top: 20px;
+    border: 2px;
+    border-color: black;
+
 }

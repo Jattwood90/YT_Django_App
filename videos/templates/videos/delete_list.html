@@ -1,16 +1,18 @@
 {% extends 'videos/base.html' %}
 {% load static %}
 {% block content %}
+<div class="upload-container">
 <div class="container">
     <h2>Are you certain you want to delete?</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-danger">Delete</button>
-        <button type="submit" class="btn btn-primary"><a href="{% url 'dashboard' %}" class="btn btn-primary">Back</a></button>
+        <button type="submit" class="srButton">Delete</button>
+        <button type="submit" class="srButton"><a href="{% url 'dashboard' %}" style="color: white">Back</a></button>
     </form>
     <br>
-    <h2><a href="{% url 'detail_list' video.id %}">{{ video.title }}</h2>
+    <h2><a href="{% url 'detail_list' video.id %}">{{ video.title }}</a></h2>
+</div>
 </div>
 <script src="{% static 'app.js' %}"></script>
 {% endblock %}

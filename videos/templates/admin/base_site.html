@@ -1,0 +1,28 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block extrahead %}
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
+{% endblock %}
+
+{% block branding %}
+
+<title>{% block title %}RPU Database | {% now "Y" %}{% endblock %}</title>
+<link type="text/css" rel="stylesheet" href="{% static 'custom.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
+<div class='base-nav-bar'>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{% url 'home' %}" class="text-dark"><img src="{% static 'logo.jpg' %}" alt="logo" class="logo-image" width="328px" height="60"></a></h5>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block sidebar %}
+<!-- Custom html content -->
+{% endblock %}
+
+{% block extrastyle %}
+<!-- place css changes here -->
+{% endblock %}
+

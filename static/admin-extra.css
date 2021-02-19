@@ -1,0 +1,83 @@
+body {
+    font-family: Source Sans Pro;
+}
+
+#header {
+    color: white;
+    background: url("/static/overhead.jpg") 90%;
+}
+
+div.breadcrumbs {
+    background: #00003c;
+}
+
+caption {
+    background: red;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: red;
+}
+
+.button. input[type=submit],
+input[type=button],
+.submit-row input,
+a.button {
+    background: black;
+    color: white;
+}
+
+.object-tools a:link,
+.object-tools a:visited,
+#user-tools,
+.object-tools a:link,
+.object-tools a:visited {
+    border: none;
+    color: white;
+    background-color: red;
+    text-transform: uppercase;
+    padding: .20em;
+    font-weight: 500;
+    line-height: 1;
+    -webkit-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+}
+
+.submit-row input.default {
+    background-color: red;
+
+}
+
+.object-tools a.addlink {
+    background-image: none;
+}
+
+.dashboard .module table th {
+    font-family: Source Sans Pro;
+}
+
+code {
+    font: 1em/1.5 sans-serif;
+    color: #333;
+    background-color: #fff;
+    padding: 1em;
+    width: 100%;
+
+}
+
+/*Import table stuff*/
+
+table.import-preview {
+    font-size: 90%;
+    color: #333;
+    justify-content: center;
+
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}

@@ -4,6 +4,7 @@ body {
     height: 100%;
     margin: 0px;
     padding: 0px;
+    font-family: Source Sans Pro !important;
 }
 
 .logincontainer {
@@ -56,19 +57,20 @@ body {
 }
 
 
-table {
+.front-table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 150px;
     padding-left: 150px;
     padding-right: 150px;
+    box-shadow: 10px;
 }
+.table-container {
+    padding-bottom: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
-td,
-th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
 }
 
 .content {
@@ -92,12 +94,7 @@ th {
     padding-top: 25px;
 }
 
-.table-container {
-    padding-bottom: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+
 
 .home-table {
     padding-bottom: 50px;

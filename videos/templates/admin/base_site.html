@@ -3,18 +3,23 @@
 
 {% block extrahead %}
 <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'admin-extra.css' %}" >
+<link type="text/css" rel="stylesheet" href="{% static 'custom.css' %}" >
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
 {% endblock %}
 
 {% block branding %}
 
 <title>{% block title %}RPU Database | {% now "Y" %}{% endblock %}</title>
-<link type="text/css" rel="stylesheet" href="{% static 'custom.css' %}">
+
 <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
 <div class='base-nav-bar'>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{% url 'home' %}" class="text-dark"><img src="{% static 'logo.jpg' %}" alt="logo" class="logo-image" width="328px" height="60"></a></h5>
+        <h1><a href="{% url 'home' %}" class="text-dark"><img src="{% static 'sr_white.png' %}" alt="logo" class="logo-image" height="70pc"></a></h1>
     </div>
 </div>
+
+
 {% endblock %}
 
 
@@ -22,7 +27,18 @@
 <!-- Custom html content -->
 {% endblock %}
 
+{% block footer %}
+<div class="main-footer">
+<footer class="main-footer">
+Copyright &copy;
+	<span class="year"><a href="https://github.com/Jattwood90" style="color:white">Joe Attwood {% now "Y" %}</a></span> 
+</footer>
+</div>
+{% endblock %}
+
 {% block extrastyle %}
 <!-- place css changes here -->
 {% endblock %}
+
+
 

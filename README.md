@@ -6,4 +6,4 @@ Environment variables are hidden using dotenv, and the whole project in producti
 
 [Ongoing project!]
 
-![ytpage](https://user-images.githubusercontent.com/56833060/107884058-9835d700-6eea-11eb-912a-c7f51b656f23.gif)
+![webapp](https://user-images.githubusercontent.com/56833060/108557921-25b16680-72f1-11eb-9ef2-324aae8b9da4.gif)

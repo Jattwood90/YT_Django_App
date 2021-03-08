@@ -4,7 +4,7 @@ The app allows the user to login, create a list of videos, and add videos to tha
 
 The Django app makes use of Class based forms, and CRUD actions for the videos.
 
-Environment variables are hidden using dotenv, and the whole project in production mode is management from a virtual environment.
+Environment variables are hidden using dotenv, and the whole project in production mode is managed from a virtual environment.
 
 [Ongoing project!]
 

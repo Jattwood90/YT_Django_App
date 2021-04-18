@@ -14,7 +14,7 @@ Environment variables are hidden using dotenv, and the whole project in producti
 
 ### Built With
 
-* [Django]()
+* Django, Bootstrap, JavaScript, and a PostgresSQL database
 
 
 <!-- GETTING STARTED -->
